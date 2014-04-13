@@ -360,6 +360,8 @@ abstract public class GraphView extends LinearLayout {
 	private boolean staticVerticalLabels;
     private boolean showHorizontalLabels = true;
     private boolean showVerticalLabels = true;
+    
+    private float maxYOverFlowPercent=1;
 
 	public GraphView(Context context, AttributeSet attrs) {
 		this(context, attrs.getAttributeValue(null, "title"));
@@ -662,8 +664,8 @@ abstract public class GraphView extends LinearLayout {
 			for (int i=0; i<graphSeries.size(); i++) {
 				GraphViewDataInterface[] values = _values(i);
 				for (int ii=0; ii<values.length; ii++)
-					if (values[ii].getY() > largest)
-						largest = values[ii].getY();
+					if (values[ii].getY() * maxYOverFlowPercent > largest)
+						largest = values[ii].getY() * maxYOverFlowPercent;
 			}
 		}
 		return largest;
@@ -741,6 +743,10 @@ abstract public class GraphView extends LinearLayout {
 
 	public boolean isShowLegend() {
 		return showLegend;
+	}
+	
+	public void setMaxYOverFlowPerCent(float maxYOverFlowPercent) {
+	    this.maxYOverFlowPercent = maxYOverFlowPercent;
 	}
 
 	/**
