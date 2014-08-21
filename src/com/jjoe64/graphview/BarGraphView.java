@@ -24,6 +24,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
 
@@ -34,6 +35,7 @@ import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
 public class BarGraphView extends GraphView {
 	private boolean drawValuesOnTop;
 	private int valuesOnTopColor = Color.WHITE;
+	private int minNumberOfColumns = 0;
 
 	public BarGraphView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -74,7 +76,11 @@ public class BarGraphView extends GraphView {
 	public void drawSeries(Canvas canvas, GraphViewDataInterface[] values, float graphwidth, float graphheight,
 			float border, double minX, double minY, double diffX, double diffY,
 			float horstart, GraphViewSeriesStyle style) {
-		float colwidth = graphwidth / (values.length);
+		int numberOfColumns = minNumberOfColumns;
+		if (minNumberOfColumns == 0 || values.length > minNumberOfColumns) {
+			numberOfColumns = values.length;
+		}
+		float colwidth = graphwidth / (numberOfColumns);
 
 		paint.setStrokeWidth(style.thickness);
 
@@ -127,5 +133,9 @@ public class BarGraphView extends GraphView {
 
 	public void setValuesOnTopColor(int valuesOnTopColor) {
 		this.valuesOnTopColor = valuesOnTopColor;
+	}
+	
+	public void setMinNumberOfColumns(int minNumberOfColumns) {
+		this.minNumberOfColumns = minNumberOfColumns;
 	}
 }
