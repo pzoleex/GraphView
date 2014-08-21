@@ -201,6 +201,9 @@ public class GraphViewSeries {
                 }
                 lx = values[i].getX();
             }
-        }
+        }}
+    
+    public String getDescription() {
+        return description;
     }
 }
