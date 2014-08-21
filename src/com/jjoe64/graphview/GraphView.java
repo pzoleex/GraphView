@@ -469,7 +469,6 @@ abstract public class GraphView extends LinearLayout {
 		int legendWidth = getGraphViewStyle().getLegendWidth();
 
 		int shapeSize = (int) (textSize*0.8d);
-        //Log.d("GraphView", "draw legend size: "+paint.getTextSize());
 
 		// rect
 		paint.setARGB(180, 100, 100, 100);
@@ -987,6 +986,10 @@ abstract public class GraphView extends LinearLayout {
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public String getTitle() {
+	    return title;
 	}
 
 	/**
