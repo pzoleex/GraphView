@@ -56,7 +56,9 @@ public class BarGraphView extends GraphView {
 			// lines
 			float x = ((graphwidth / hors) * i) + horstart;
 			paint.setColor(graphViewStyle.getGridColor());
-			canvas.drawLine(x, height - border, x, border, paint);
+			if (graphViewStyle.getGridStyle().drawVertical()) { // vertical lines
+				canvas.drawLine(x, height - border, x, border, paint);
+			}
 
             if(getShowHorizontalLabels()) {
                 // text
