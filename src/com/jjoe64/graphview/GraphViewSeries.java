@@ -59,6 +59,7 @@ public class GraphViewSeries {
 	}
 
 	final String description;
+	final String id;
 	final GraphViewSeriesStyle style;
 	GraphViewDataInterface[] values;
 	private final List<GraphView> graphViews = new ArrayList<GraphView>();
@@ -69,6 +70,7 @@ public class GraphViewSeries {
      */
 	public GraphViewSeries(GraphViewDataInterface[] values) {
 		description = null;
+		id = null;
 		style = new GraphViewSeriesStyle();
 		this.values = values;
         checkValueOrder();
@@ -83,11 +85,24 @@ public class GraphViewSeries {
 	public GraphViewSeries(String description, GraphViewSeriesStyle style, GraphViewDataInterface[] values) {
 		super();
 		this.description = description;
+		id = null;
 		if (style == null) {
 			style = new GraphViewSeriesStyle();
 		}
 		this.style = style;
 		this.values = values;
+        checkValueOrder();
+	}
+	
+	public GraphViewSeries(String description, GraphViewSeriesStyle style, GraphViewDataInterface[] values, String id) {
+        super();
+        this.description = description;
+        this.id = id;
+        if (style == null) {
+            style = new GraphViewSeriesStyle();
+        }
+        this.style = style;
+        this.values = values;
         checkValueOrder();
     }
 
@@ -206,4 +221,8 @@ public class GraphViewSeries {
     public String getDescription() {
         return description;
     }
+	
+	public String getId() {
+	    return id;
+	}
 }
