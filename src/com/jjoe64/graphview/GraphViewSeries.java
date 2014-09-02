@@ -225,4 +225,9 @@ public class GraphViewSeries {
 	public String getId() {
 	    return id;
 	}
+
+	public GraphViewDataInterface[] getValues() {
+		return values;
+	}
+		
 }
