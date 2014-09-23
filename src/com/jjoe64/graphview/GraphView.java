@@ -364,6 +364,7 @@ abstract public class GraphView extends LinearLayout {
     
     private float maxYOverFlowPercent=1;
     private int legendBackgroundTransparency = 180;
+    private int legendColor=Color.WHITE;
 
 	public GraphView(Context context, AttributeSet attrs) {
 		this(context, attrs.getAttributeValue(null, "title"));
@@ -400,6 +401,10 @@ abstract public class GraphView extends LinearLayout {
 
 	public void setLegendBackgroundTransparency(int legendBackgroundTransparency) {
 		this.legendBackgroundTransparency = legendBackgroundTransparency;
+	}
+
+	public void setLegendColor(int legendColor) {
+		this.legendColor = legendColor;
 	}
 
 	private GraphViewDataInterface[] _values(int idxSeries) {
@@ -447,7 +452,7 @@ abstract public class GraphView extends LinearLayout {
 		int hors = horlabels.length - 1;
 		for (int i = 0; i < horlabels.length; i++) {
 			paint.setColor(graphViewStyle.getGridColor());
-			float x = ((graphwidth / hors) * i) + horstart;
+			float x = ((graphwidth / hors) * i) + horstart;			
 			if(graphViewStyle.getGridStyle().drawVertical()) { // vertical lines
 				canvas.drawLine(x, height - border, x, border, paint);
 			}
@@ -501,7 +506,7 @@ abstract public class GraphView extends LinearLayout {
 			paint.setColor(graphSeries.get(i).style.color);
 			canvas.drawRect(new RectF(lLeft+border, lTop+border+(i*(shapeSize+spacing)), lLeft+border+shapeSize, lTop+border+(i*(shapeSize+spacing))+shapeSize), paint);
 			if (graphSeries.get(i).description != null) {
-				paint.setColor(Color.WHITE);
+				paint.setColor(this.legendColor);
 				paint.setTextAlign(Align.LEFT);
 				canvas.drawText(graphSeries.get(i).description, lLeft+border+shapeSize+spacing, lTop+border+shapeSize+(i*(shapeSize+spacing)), paint);
 			}
