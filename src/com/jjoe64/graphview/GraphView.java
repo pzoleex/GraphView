@@ -24,6 +24,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.R;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -362,6 +363,7 @@ abstract public class GraphView extends LinearLayout {
     private boolean showVerticalLabels = true;
     
     private float maxYOverFlowPercent=1;
+    private int legendBackgroundTransparency = 180;
 
 	public GraphView(Context context, AttributeSet attrs) {
 		this(context, attrs.getAttributeValue(null, "title"));
@@ -394,6 +396,10 @@ abstract public class GraphView extends LinearLayout {
 		addView(viewVerLabels);
 		graphViewContentView = new GraphViewContentView(context);
 		addView(graphViewContentView, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, 1));
+	}
+
+	public void setLegendBackgroundTransparency(int legendBackgroundTransparency) {
+		this.legendBackgroundTransparency = legendBackgroundTransparency;
 	}
 
 	private GraphViewDataInterface[] _values(int idxSeries) {
@@ -471,7 +477,9 @@ abstract public class GraphView extends LinearLayout {
 		int shapeSize = (int) (textSize*0.8d);
 
 		// rect
-		paint.setARGB(180, 100, 100, 100);
+
+	    paint.setARGB(this.legendBackgroundTransparency, 100, 100, 100);		
+			
 		float legendHeight = (shapeSize+spacing)*graphSeries.size() +2*border -spacing;
 		float lLeft = width-legendWidth - border*2;
 		float lTop;
