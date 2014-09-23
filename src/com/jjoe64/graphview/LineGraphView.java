@@ -118,6 +118,8 @@ public class LineGraphView extends GraphView {
 			bgPath.lineTo((float) lastEndX, graphheight + border);
 			bgPath.lineTo(firstX, graphheight + border);
 			bgPath.close();
+			paintBackground.setColor(style.color);
+			paintBackground.setAlpha(128);
 			canvas.drawPath(bgPath, paintBackground);
 		}
 	}
