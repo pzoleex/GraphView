@@ -36,6 +36,7 @@ public class LineGraphView extends GraphView {
 	private boolean drawBackground;
 	private boolean drawDataPoints;
 	private float dataPointsRadius = 10f;
+	private int seriesBackgroundAlpha = 128;
 
 	public LineGraphView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -53,6 +54,10 @@ public class LineGraphView extends GraphView {
 		paintBackground.setColor(Color.rgb(20, 40, 60));
 		paintBackground.setStrokeWidth(4);
 		paintBackground.setAlpha(128);
+	}
+
+	public void setSeriesBackgroundAlpha(int seriesBackgroundAlpha) {
+		this.seriesBackgroundAlpha = seriesBackgroundAlpha;
 	}
 
 	@Override
@@ -119,7 +124,7 @@ public class LineGraphView extends GraphView {
 			bgPath.lineTo(firstX, graphheight + border);
 			bgPath.close();
 			paintBackground.setColor(style.color);
-			paintBackground.setAlpha(128);
+			paintBackground.setAlpha(seriesBackgroundAlpha);
 			canvas.drawPath(bgPath, paintBackground);
 		}
 	}
