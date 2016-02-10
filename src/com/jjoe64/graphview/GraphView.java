@@ -157,8 +157,8 @@ abstract public class GraphView extends LinearLayout {
 			for (int i=0; i<graphSeries.size(); i++) {
 				drawSeries(canvas, _values(i), graphwidth, graphheight, border, minX, minY, diffX, diffY, horstart, graphSeries.get(i).style);
 			}
-
-			if (showLegend) drawLegend(canvas, height, width);
+			
+			if (showLegend) drawLegend(canvas, height, width, border);
 		}
 
 		private void onMoveGesture(float f) {
@@ -253,7 +253,7 @@ abstract public class GraphView extends LinearLayout {
 	}
 
 	public enum LegendAlign {
-		TOP, MIDDLE, BOTTOM
+		TOP, MIDDLE, BOTTOM, TOP_BORDER
 	}
 
 	private class VerLabelsView extends View {
@@ -473,7 +473,7 @@ abstract public class GraphView extends LinearLayout {
 		}
 	}
 
-	protected void drawLegend(Canvas canvas, float height, float width) {
+	protected void drawLegend(Canvas canvas, float height, float width, float borderMeasured) {
 		float textSize = paint.getTextSize();
 		int spacing = getGraphViewStyle().getLegendSpacing();
 		int border = getGraphViewStyle().getLegendBorder();
@@ -495,8 +495,11 @@ abstract public class GraphView extends LinearLayout {
 		case MIDDLE:
 			lTop = height/2 - legendHeight/2;
 			break;
+		case TOP_BORDER:
+		    lTop = borderMeasured;
+            break;
 		default:
-			lTop = height - GraphViewConfig.BORDER - legendHeight - getGraphViewStyle().getLegendMarginBottom();
+			lTop = height - GraphViewConfig.BORDER - legendHeight - getGraphViewStyle().getLegendMarginBottom();		    
 		}
 		float lRight = lLeft+legendWidth;
 		float lBottom = lTop+legendHeight;
