@@ -19,6 +19,8 @@
 
 package com.jjoe64.graphview;
 
+import android.graphics.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +65,7 @@ public class GraphViewSeries {
 	final GraphViewSeriesStyle style;
 	GraphViewDataInterface[] values;
 	private final List<GraphView> graphViews = new ArrayList<GraphView>();
+	private int legendColor= Color.WHITE;
 
     /**
      * create a series with predefined values
@@ -229,5 +232,12 @@ public class GraphViewSeries {
 	public GraphViewDataInterface[] getValues() {
 		return values;
 	}
-		
+
+	public int getLegendColor() {
+		return legendColor;
+	}
+
+	public void setLegendColor(int legendColor) {
+		this.legendColor = legendColor;
+	}
 }

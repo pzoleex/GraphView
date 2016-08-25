@@ -509,7 +509,7 @@ abstract public class GraphView extends LinearLayout {
 			paint.setColor(graphSeries.get(i).style.color);
 			canvas.drawRect(new RectF(lLeft+border, lTop+border+(i*(shapeSize+spacing)), lLeft+border+shapeSize, lTop+border+(i*(shapeSize+spacing))+shapeSize), paint);
 			if (graphSeries.get(i).description != null) {
-				paint.setColor(this.legendColor);
+				paint.setColor(graphSeries.get(i).getLegendColor());
 				paint.setTextAlign(Align.LEFT);
 				canvas.drawText(graphSeries.get(i).description, lLeft+border+shapeSize+spacing, lTop+border+shapeSize+(i*(shapeSize+spacing)), paint);
 			}
@@ -1072,5 +1072,7 @@ abstract public class GraphView extends LinearLayout {
     public boolean getShowVerticalLabels() {
         return showVerticalLabels;
     }
+
+
 
 }
