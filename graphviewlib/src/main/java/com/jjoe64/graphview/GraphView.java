@@ -981,6 +981,10 @@ abstract public class GraphView extends LinearLayout {
 					return true;
 				}
 			});
+		} else {
+			scaleDetector = null;
+			viewportStart=0;
+			viewportSize=0;
 		}
 	}
 
