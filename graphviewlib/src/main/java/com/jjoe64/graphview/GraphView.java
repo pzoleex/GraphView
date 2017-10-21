@@ -446,6 +446,11 @@ abstract public class GraphView extends LinearLayout {
 		redrawAll();
 	}
 
+	public void addSeriesWithoutDraw(GraphViewSeries series) {
+		series.addGraphView(this);
+		graphSeries.add(series);
+	}
+
 	protected void drawHorizontalLabels(Canvas canvas, float border,
 			float horstart, float height, String[] horlabels, float graphwidth) {
 		// horizontal labels + lines
@@ -794,6 +799,15 @@ abstract public class GraphView extends LinearLayout {
 		}
 		redrawAll();
 	}
+
+    public void removeAllSeriesWithoutRedraw() {
+        for (GraphViewSeries s : graphSeries) {
+            s.removeGraphView(this);
+        }
+        while (!graphSeries.isEmpty()) {
+            graphSeries.remove(0);
+        }
+    }
 
 	/**
 	 * removes a series
