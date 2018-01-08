@@ -19,12 +19,10 @@
 
 package com.jjoe64.graphview;
 
-import java.nio.charset.Charset;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.R;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -39,7 +37,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
-import com.jjoe64.graphview.GraphViewStyle.GridStyle;
 import com.jjoe64.graphview.compatible.ScaleGestureDetector;
 
 /**
@@ -416,19 +413,19 @@ abstract public class GraphView extends LinearLayout {
 			} else {
 				// viewport
 				List<GraphViewDataInterface> listData = new ArrayList<GraphViewDataInterface>();
-				for (int i=0; i<values.length; i++) {
-					if (values[i].getX() >= viewportStart) {
-						if (values[i].getX() > viewportStart+viewportSize) {
-							listData.add(values[i]); // one more for nice scrolling
+				for (GraphViewDataInterface value : values) {
+					if (value.getX() >= viewportStart) {
+						if (value.getX() > viewportStart + viewportSize) {
+							listData.add(value); // one more for nice scrolling
 							break;
 						} else {
-							listData.add(values[i]);
+							listData.add(value);
 						}
 					} else {
 						if (listData.isEmpty()) {
-							listData.add(values[i]);
+							listData.add(value);
 						}
-						listData.set(0, values[i]); // one before, for nice scrolling
+						listData.set(0, value); // one before, for nice scrolling
 					}
 				}
 				return listData.toArray(new GraphViewDataInterface[listData.size()]);
@@ -683,9 +680,9 @@ abstract public class GraphView extends LinearLayout {
 			largest = Integer.MIN_VALUE;
 			for (int i=0; i<graphSeries.size(); i++) {
 				GraphViewDataInterface[] values = _values(i);
-				for (int ii=0; ii<values.length; ii++)
-					if (values[ii].getY() * maxYOverFlowPercent > largest)
-						largest = values[ii].getY() * maxYOverFlowPercent;
+				for (GraphViewDataInterface value : values)
+					if (value.getY() * maxYOverFlowPercent > largest)
+						largest = value.getY() * maxYOverFlowPercent;
 			}
 		}
 		return largest;
@@ -737,9 +734,9 @@ abstract public class GraphView extends LinearLayout {
 			smallest = Integer.MAX_VALUE;
 			for (int i=0; i<graphSeries.size(); i++) {
 				GraphViewDataInterface[] values = _values(i);
-				for (int ii=0; ii<values.length; ii++)
-					if (values[ii].getY() < smallest)
-						smallest = values[ii].getY();
+				for (GraphViewDataInterface value : values)
+					if (value.getY() < smallest)
+						smallest = value.getY();
 			}
 		}
 		return smallest;
