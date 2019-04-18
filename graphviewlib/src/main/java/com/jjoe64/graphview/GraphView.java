@@ -65,7 +65,7 @@ abstract public class GraphView extends LinearLayout {
 		 */
 		public GraphViewContentView(Context context) {
 			super(context);
-			setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+			setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		}
 
 		/**
@@ -261,7 +261,7 @@ abstract public class GraphView extends LinearLayout {
 			super(context);
 			setLayoutParams(new LayoutParams(
 					getGraphViewStyle().getVerticalLabelsWidth()==0?100:getGraphViewStyle().getVerticalLabelsWidth()
-							, LayoutParams.FILL_PARENT));
+							, LayoutParams.MATCH_PARENT));
 		}
 
 		/**
@@ -283,10 +283,10 @@ abstract public class GraphView extends LinearLayout {
 			}
 			if (getGraphViewStyle().getVerticalLabelsWidth()==0 && getLayoutParams().width != verLabelTextWidth+GraphViewConfig.BORDER) {
 				setLayoutParams(new LayoutParams(
-						(int) (verLabelTextWidth+GraphViewConfig.BORDER), LayoutParams.FILL_PARENT));
+						(int) (verLabelTextWidth+GraphViewConfig.BORDER), LayoutParams.MATCH_PARENT));
 			} else if (getGraphViewStyle().getVerticalLabelsWidth()!=0 && getGraphViewStyle().getVerticalLabelsWidth() != getLayoutParams().width) {
 				setLayoutParams(new LayoutParams(
-						getGraphViewStyle().getVerticalLabelsWidth(), LayoutParams.FILL_PARENT));
+						getGraphViewStyle().getVerticalLabelsWidth(), LayoutParams.MATCH_PARENT));
 			}
 
 			float border = GraphViewConfig.BORDER;
@@ -377,7 +377,7 @@ abstract public class GraphView extends LinearLayout {
 	 */
 	public GraphView(Context context, String title) {
 		super(context);
-		setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
 		if (title == null)
 			this.title = "";
@@ -393,7 +393,7 @@ abstract public class GraphView extends LinearLayout {
 		viewVerLabels = new VerLabelsView(context);
 		addView(viewVerLabels);
 		graphViewContentView = new GraphViewContentView(context);
-		addView(graphViewContentView, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, 1));
+		addView(graphViewContentView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 1));
 	}
 
 	public void setLegendBackgroundTransparency(int legendBackgroundTransparency) {
@@ -428,7 +428,7 @@ abstract public class GraphView extends LinearLayout {
 						listData.set(0, value); // one before, for nice scrolling
 					}
 				}
-				return listData.toArray(new GraphViewDataInterface[listData.size()]);
+				return listData.toArray(new GraphViewDataInterface[0]);
 			}
 		}
 	}
@@ -529,7 +529,7 @@ abstract public class GraphView extends LinearLayout {
 	 * @deprecated use {@link #setCustomLabelFormatter(CustomLabelFormatter)}
 	 * @return value to display
 	 */
-	@Deprecated
+
 	protected String formatLabel(double value, boolean isValueX) {
 		if (customLabelFormatter != null) {
 			String label = customLabelFormatter.formatLabel(value, isValueX);
@@ -957,7 +957,7 @@ abstract public class GraphView extends LinearLayout {
 	 */
 	synchronized public void setScalable(boolean scalable) {
 		this.scalable = scalable;
-		if (scalable == true && scaleDetector == null) {
+		if (scalable && scaleDetector == null) {
 			scrollable = true; // automatically forces this
 			scaleDetector = new ScaleGestureDetector(getContext(), new ScaleGestureDetector.SimpleOnScaleGestureListener() {
 				@Override

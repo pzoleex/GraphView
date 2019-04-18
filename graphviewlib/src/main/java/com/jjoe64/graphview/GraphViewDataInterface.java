@@ -25,6 +25,6 @@ package com.jjoe64.graphview;
  * this interface.
  */
 public interface GraphViewDataInterface {
-	public double getX();
-	public double getY();
+	double getX();
+	double getY();
 }
