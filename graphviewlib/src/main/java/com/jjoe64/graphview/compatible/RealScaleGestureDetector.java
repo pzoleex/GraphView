@@ -21,7 +21,7 @@ package com.jjoe64.graphview.compatible;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.view.ScaleGestureDetector;
 
 @SuppressLint("NewApi")
