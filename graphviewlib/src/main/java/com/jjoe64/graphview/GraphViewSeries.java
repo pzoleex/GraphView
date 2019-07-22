@@ -60,7 +60,7 @@ public class GraphViewSeries {
 		}
 	}
 
-	final String description;
+	String description;
 	final String id;
 	final GraphViewSeriesStyle style;
 	GraphViewDataInterface[] values;
@@ -240,4 +240,9 @@ public class GraphViewSeries {
 	public void setLegendColor(int legendColor) {
 		this.legendColor = legendColor;
 	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 }
